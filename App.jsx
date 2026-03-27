@@ -1,22 +1,18 @@
-import { View, StyleSheet } from 'react-native'
+import { View} from 'react-native'
 import React from 'react'
-import Loader from './src/components/Loader'
+// import Loader from './src/components/Loader'
+import PracticeApi from './src/components/PracticeApi'
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Loader />
+    <View style={{ flex: 1 }} >
+      {/* <Loader /> */}
+      <PracticeApi />
+
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1, 
-    justifyContent: 'center', 
-    alignItems: 'center',
-    backgroundColor: '#fff'
-  }
-})
+
 
 export default App
