@@ -1,44 +1,46 @@
 import React from 'react';
+import 'react-native-gesture-handler'; // MUST BE THE VERY FIRST LINE
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 // Screens
 import Home from './src/navigation-screen/Home';
 import About from './src/navigation-screen/About';
 import Login from './src/navigation-screen/Login';
-// import { Button } from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 
-const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
-// const headertitle = () => {
-//   return <Button title='one' color='red'/>;
-// };
+const Drawer = createDrawerNavigator();
 
+// --- 1. Define the Drawer Group ---
+// This contains all the screens that should have the side menu
+const DrawerGroup = () => {
+  return (
+    <Drawer.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: 'lightblue' },
+        headerTitleAlign: 'center',
+      }}
+    >
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="About" component={About} />
+      
+    </Drawer.Navigator>
+  );
+};
+
+// --- 2. Main App Component ---
 const App = () => {
-  
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: 'lightblue', 
-          },
-          headerTintColor: 'black', 
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-          headerTitleAlign: 'center', 
-        }}
-      >
-        <Stack.Screen name="Login" component={Login}
-        //  options={{
-        //   title: " ",
-        //   headerTitle:headertitle
-        // }} 
+      <Stack.Navigator initialRouteName="Login">
+        
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen 
+          name="MainApp" 
+          component={DrawerGroup} 
+          options={{ headerShown: false }} // Hide Stack header to show Drawer header
         />
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="About" component={About} />
       </Stack.Navigator>
     </NavigationContainer>
   );

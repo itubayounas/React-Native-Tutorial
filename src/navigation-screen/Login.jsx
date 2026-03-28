@@ -25,10 +25,10 @@ const Login = ( { navigation } ) => {
       return;
     }
     Alert.alert('Success', 'Login successful');
-    navigation.navigate('Home',{
-      name:name,
-      email:email,
-    });
+    navigation.navigate('MainApp', {
+  screen: 'Home', // Optional: explicitly tells it which screen inside the drawer
+  params: { name: name, email: email }, // Pass data here
+});
     setname('');
     setEmail('');
     setPassword('');

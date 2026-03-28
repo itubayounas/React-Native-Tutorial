@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Touchable, TouchableOpacity } from 'react-nativ
 import React from 'react'
 
 const Home = ({route}) => {
-  const {name,email} = route.params;
+  const { name, email } = route.params || { name: "Guest", email: "N/A" };
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Welcome to Home Screen!</Text>
